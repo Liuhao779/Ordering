@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>增加菜品</title>
+    <link rel="stylesheet"  th:href="@{/layui/css/layui.css}"   media="all">
+    <script src="//res.layui.com/layui/dist/layui.js" th:src="@{/layui/layui.js}" charset="utf-8"></script>
+    <script src="//res.layui.com/layui/dist/layui.js" th:src="@{/jquery/jquery-3.2.1.js}" charset="utf-8"></script>
+    <style>
+        .layui-upload-img{width: 92px; height: 92px; margin: 0 10px 10px 0;}
+    </style>
+   <!-- <script>
+        $(function(){
+            $.getJSON("/getclassinfojson",function (data) {
+                var html = '';
+                for(var i=0;i<data.length;i++){
+                    html += '<option value="';
+                    html +=data[i].id;
+                    html +='"'
+                    html += '>';
+                    html+= data.[i].classname;
+                    html += '</option>';
+                    console.log(html);
+                }
+                $('#street_id').html(html);
+            });
+
+        });
+    </script>-->
+
+</head>
+<body>
+<form class="layui-form layui-form-pane" th:action="@{/commitfood}" style="margin-top: 20px">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">菜名</label>
+        <div class="layui-input-inline">
+            <input name="foodname" lay-verify="required"  autocomplete="off" placeholder="请输入菜名" class="layui-input" type="text">
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-inline">
+            <textarea placeholder="请输入描述信息" class="layui-textarea" name="describes"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">分类</label>
+        <div class="layui-input-inline">
+        <select name="classinfo" lay-filter="required" required>
+            <option value="1">请选择分类</option>
+        <option th:each="classinfo:${classinfos}"  th:value="${classinfo.id}" th:text="${classinfo.classname}">
+
+        </option>
+
+        </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">价格</label>
+        <div class="layui-input-inline">
+            <input name="price" lay-verify="required"  autocomplete="off" placeholder="请输入价格" class="layui-input" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">样品图片</label>
+        <div class="layui-input-inline">
+            <div class="layui-upload">
+                <input type="hidden" name="foodimg" id="foodimg"/>
+                <button type="button" class="layui-btn" id="test1">上传图片</button>
+                <div class="layui-upload-list">
+                    <img class="layui-upload-img" id="demo1">
+                    <p id="demoText"></p>
+                </div>
+            </div>        </div>
+    </div>
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function() {
+        var from  = layui.form;
+        from.render();
+    });
+
+</script>
+</form>
+</body>
+<script>
+    layui.use('upload', function() {
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            , url: '/updateimage'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                $('#foodimg').val(res.file);
+                //上传成功
+
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+    });
+
+</script>
+</html>

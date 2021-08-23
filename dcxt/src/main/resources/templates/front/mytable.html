@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>我的餐桌</title>
+    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.css"  th:href="@{/bootstrap/css/bootstrap.css}"/>
+    <script src="../../static/jquery/jquery-3.2.1.js" th:src="@{/jquery/jquery-3.2.1.js}"></script>
+    <script src="../../static/bootstrap/js/bootstrap.min.js" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <style>
+
+        .table tbody tr td{
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+        $("#myModal").modal({
+            remote: "demo.html"
+        });
+        $("#consume").modal({
+            remote: "demo.html"
+        });
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <div style="margin-top: 20px"></div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>桌号</th>
+            <th>桌名</th>
+            <th>容纳人数</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tablebean:${tablebeans}">
+            <th scope="row" th:text="${tablebean.tablenum}">1</th>
+            <td th:text="${tablebean.tablename}">Mark</td>
+            <td th:text="${tablebean.galleryful}">Otto</td>
+            <td>
+                <a  class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal"  th:href="@{/front/selectclass(tablebean=${tablebean.consumenum})}">点菜</a>
+                <a type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#consume" th:href="@{/front/menu(tablebean=${tablebean.consumenum})}">查看消费单</a>
+            </td>
+        </tr>
+        </tbody>
+
+        <!-- 模态框（Modal） -->
+        <div class="modal fade" id="myModal" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">点菜</h4>
+                    </div>
+                    <div class="modal-body">系统出错</div>
+                    <div class="modal-footer">
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+
+    </table>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="consume" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myconsumes">点菜</h4>
+                </div>
+                <div class="modal-body">系统出错</div>
+                <div class="modal-footer">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcxt.front.mapper.ConsumedetailMapper">
+    <select id="getByConsumedetail" parameterType="String" resultType="ConsumedetailBean">
+        select  *  from t_consumedetail where cunid=#{cunid}
+    </select>
+
+    <insert id="addconsumedetaile" parameterType="ConsumedetailBean">
+   insert into t_consumedetail(cunid,foodname,price,quantity) VALUES (#{cunid},#{foodname},#{price},#{quantity})
+    </insert>
+
+</mapper>

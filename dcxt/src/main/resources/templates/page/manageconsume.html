@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"  th:href="@{/layui/css/layui.css}"   media="all">
+    <script src="//res.layui.com/layui/dist/layui.js" th:src="@{/layui/layui.js}" charset="utf-8"></script>
+    <script src="//res.layui.com/layui/dist/layui.js" th:src="@{/jquery/jquery-3.2.1.js}" charset="utf-8"></script>
+</head>
+<body>
+
+<div class="layui-form">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>消费单号</th>
+            <th>餐桌号</th>
+            <th>消费人</th>
+            <th>创建时间</th>
+            <th>总价格</th>
+            <th>是否结算</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="consumebean:${consumeBeans}">
+            <td th:text="${consumebean.consumptionnum}">贤心</td>
+            <td th:text="${consumebean.tablenum}">汉族</td>
+            <td th:text="${consumebean.unameaccount}">汉族</td>
+
+            <td th:text="${#dates.format(consumebean.createtime, 'yyyy-MM-dd HH:mm:ss')}" >1989-10-14</td>
+            <td th:text="${consumebean.Total}">汉族</td>
+            <td th:text="${consumebean.isaccount}==1?已结账:未结账">人生似修行</td>
+            <td >  <div class="layui-btn-group">
+
+                <button class="layui-btn layui-btn-small"  data-val="123" th:onclick="'javascript:showdig('+${consumebean.id}+');'" >查看</button>
+            </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<script>
+    layui.use('layer', function() { //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+    });
+    function showdig(id) {
+        var val = $(this).data("val")
+        console.log(id)
+        //示范一个公告层
+        layer.open({
+            type: 2
+            ,
+            title: false //不显示标题栏
+            ,
+            closeBtn: false
+            ,
+            area: '800px;'
+            ,
+            shade: 0.8,
+            shadeClose:true
+            ,
+            id: 'LAY_layuipro' //设定一个id，防止重复弹出
+            ,
+            btn: [ '关闭']
+            ,
+            btnAlign: 'c'
+            ,
+            moveType: 1 //拖拽模式，0或者1
+            ,
+            content: '/front/menu?id='+id
+
+        });
+
+    };
+</script>
+</html>

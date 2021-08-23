@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.css"  th:href="@{/bootstrap/css/bootstrap.css}"/>
+    <script src="../../static/jquery/jquery-3.2.1.js" th:src="@{/jquery/jquery-3.2.1.js}"></script>
+    <script src="../../static/bootstrap/js/bootstrap.min.js" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <title>查看菜单</title>
+
+</head>
+<body>
+<div class="container">
+<table class="table  table-bordered">
+    <thead>
+    <tr>
+        <th>消费单号</th>
+        <td th:text="${map.num}"></td>
+        <th>消费人</th>
+        <td th:text="${map.unameaccount}"></td>
+
+
+    </tr>
+    <tr>
+        <th>菜名</th>
+        <th>数目</th>
+        <th>价格</th>
+        <th>总价</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ConsumedetailBean:${Consumedetails}">
+        <td th:text="${ConsumedetailBean.foodname}">鱼香肉丝</td>
+        <td th:text="${ConsumedetailBean.quantity}">1</td>
+        <td th:text="${ConsumedetailBean.price}">25</td>
+        <td th:text="${ConsumedetailBean.price}*${ConsumedetailBean.quantity}"></td>
+      <tr class="success">
+        <th>合计</th>
+        <td th:text="${map.quantity}">2</td>
+        <td></td>
+        <td th:text="${map.totalprice}">25</td>
+
+    </tr>
+    </tr>
+    </tbody>
+</table>
+
+<button type="button" class="btn btn-primary">打印</button>
+
+</div>
+</body>
+</html>

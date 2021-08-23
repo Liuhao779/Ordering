@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>餐桌列表</title>
+    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.css"  th:href="@{/bootstrap/css/bootstrap.css}"/>
+    <style>
+
+        .table tbody tr td{
+            vertical-align: middle;
+        }
+    </style>
+
+    <script th:inline="JavaScript">
+        window.onload = function(){
+            var m = [[${message}]]
+            console.log(m)
+            if(m!=null){
+                alert(m);
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div style="margin-top: 20px"></div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>桌号</th>
+            <th>桌名</th>
+            <th>容纳人数</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tablebean :${tablebeans}">
+            <th scope="row" th:text="${tablebean.tablenum}"></th>
+            <td th:text="${tablebean.tablename}"></td>
+            <td th:text="${tablebean.galleryful}"></td>
+            <td>
+                <a type="button" class="btn btn-info btn-xs" th:href="@{/front/addconsume(id=${tablebean.id})}">开桌</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

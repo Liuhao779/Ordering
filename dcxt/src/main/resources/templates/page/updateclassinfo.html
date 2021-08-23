@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>增加分类</title>
+    <link rel="stylesheet"  th:href="@{/layui/css/layui.css}"   media="all">
+</head>
+<body>
+<form class="layui-form layui-form-pane" th:action="@{/commitclassinfo}" style="margin-top: 20px">
+    <input type="hidden" id="id" name="id" th:value="${classinfo.id}">
+    <div class="layui-form-item">
+        <label class="layui-form-label">菜单名称</label>
+        <div class="layui-input-inline">
+            <input name="classname" lay-verify="title" th:value="${classinfo.classname}" autocomplete="off" placeholder="请输入菜单名称" class="layui-input" type="text">
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+
+</form>
+</body>
+</html>

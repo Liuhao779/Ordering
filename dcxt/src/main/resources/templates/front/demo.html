@@ -1,0 +1,290 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<title>无标题文档</title>
+
+<style>
+html,body,div,p,form,label,ul,li,dl,dt,dd,ol,img,button,b,em,strong,small,h1,h2,h3,h4,h5,h6{margin:0;padding:0;border:0;list-style:none;font-style:normal;}
+body{font-family:SimHei,'Helvetica Neue',Arial,'Droid Sans',sans-serif;font-size:14px;color:#333;background:#f2f2f2;padding: 0;min-width: 300px; max-width: 640px; margin: 0 auto;}
+a, a.link{color:#666;text-decoration:none;font-weight:500;}
+a, a.link:hover{color:#666;}
+h1,h2,h3,h4,h5,h6{font-weight: normal;}
+.left-menu::-webkit-scrollbar {width: 0px;}
+.main{overflow:hidden;}
+.left-menu{width:25%;float:left;background-color:#eee;position:relative;overflow-y:scroll;height: 500px;}
+.left-menu ul li{line-height:60px;width:100%;text-align:center;font-size:14px;padding:3px 0;color:#333;border-bottom:1px dashed #ddd;}  
+.left-menu ul li.active{color:#f34b3f !important;background-color:#fff;}  
+.right-con{display:none;width:75%;float:left;overflow-y:scroll;background:#fff;position:relative;height:500px;}
+.con .con-active{display:block;}
+.right-con li{position:relative;height:75px;border-bottom:1px solid #e7eaeb;border-top:1px solid #fff;padding-bottom:8px;margin-bottom:2px;}  
+.right-con li .menu-img{position:absolute;margin-left:10px;top:15px;border-radius:3px;cursor:pointer;}  
+.right-con li .menu-img img{height:55px;width:55px;vertical-align:middle;border:0;}  
+.right-con li .menu-txt{margin:15px 15px 15px 75px;}
+.right-con li .menu-txt h3{font-size:14px;margin-bottom:10px;margin-top:8px;} 
+.right-con li .menu-txt p{font-style:normal;line-height:20px;font-size:12px;vertical-align:bottom;}  
+.right-con li .menu-txt p.list2 b{font-size:14px;color:#f00;}  
+.right-con li .btn{background-color:transparent;position:absolute;right:0px;top:45%;cursor:pointer;padding:3px;height:38px;}  
+.right-con li .btn button.minus{margin-right:-10px;display:none;}  
+.right-con li .btn button{width:40px;height:40px;border:0;background:transparent;padding:0;}  
+.right-con li .btn button strong{padding:5px 10px;font-size:15px;display:inline-block;text-indent:-100px;padding:5px 11px;height:12px;}  
+.right-con li .btn button.minus strong{background:url(/images/down.png) no-repeat;background-size:15px 15px;}
+.right-con li .btn i{display:none;width:22px;text-align:center;font-style:normal;vertical-align:top;margin-top:11px;line-height:18px;}
+.right-con li .btn button.add{margin-left:-10px;}  
+.right-con li .btn button.add strong{background:url(/images/up.png) no-repeat;background-size:15px 15px;}
+.right-con li .btn .price{display:none;} 
+.footer{display:block;position:fixed;width:100%;z-index:3;bottom:0px;color:#f03c03;background:#fff;line-height:35px;font-size:15px;border-top:1px solid #e2e2e2;}  
+.footer .left{float:left;margin:5px 10px;}  
+.footer .right{float:right;}  
+.footer .right .disable{background:#dbdbdb;}  
+.footer .xhlbtn{display:block;text-align:center;line-height:45px;background-color:#F03C03;padding:0 15px;color:#fff;font-weight:bold;}  
+</style>
+</head>
+
+<body>
+<input type="hidden" th:value="${tablebean}">
+<div class="main">
+	<div class="left-menu">
+		<ul th:each="foodclass:${foodclass}">
+        <!--   <li class="active">营养套餐<span class="num-price"></span></li>-->
+           <li th:value="${foodclass.id}" th:text="${foodclass.classname}" >酒水饮料</li>
+        </ul> 
+	</div>
+	<div class="con">
+		<div  class="right-con con-active">
+			<ul  id="foodui" >
+			<!--	<li>
+					<div class="menu-img"><img src="img/pic.png" width="55" height="55" /></div>
+					<div class="menu-txt">
+						<h4>宫保鸡丁</h4>
+						<p class="list1">家常菜</p>
+						<p class="list2">
+							<b>￥24</b>
+							<div class="btn">
+								 <button class="minus">
+									 <strong></strong>
+								 </button>
+								 <i>0</i>
+								  <button class="add">
+									 <strong></strong>
+								 </button>
+								 <i class="price">24</i>
+							 </div>
+						</p>
+					</div>
+				</li>-->
+			</ul>
+		</div>
+
+	</div>
+	<div class="footer">  
+		<div class="left">已选：
+		<span id="cartN">
+			<span id="totalcountshow">0</span>份　总计：￥<span id="totalpriceshow">0</span></span>元  
+		</div>  
+		<div class="right">  
+			<button id="btnselect" class="xhlbtn  disable">确认</button>
+		</div>   
+	</div>
+</div>
+
+<script type="text/javascript" src="../../static/jquery/jquery-3.2.1.js" th:src="@{/jquery/jquery-3.2.1.js}"></script>
+<script type="text/javascript">
+$(function () {
+    var foodid = new Array();
+    var foods = {"a":1};
+    foods["b"] = 2;
+
+	//选项卡
+/*	$(".con>div").hide();
+	$(".con>div:eq(0)").show();*/
+
+
+
+});  
+</script>
+<script th:inline="JavaScript">
+
+    var myMap = new Map();
+    	$('#btnselect').click(function () {
+            var m = $("#totalpriceshow").html();
+            var urls = "/front/addcomnedetail";
+			var s ={}
+            var mess = [[${tablebean}]];
+			myMap.forEach(function (itme,key,mapObj) {
+			s[key]=itme;
+
+                console.log(mapObj);
+            })
+            console.log(s);
+			var jsons =JSON.stringify(s)
+            var data = {"mess":mess,"totalprice":m,"mymap":jsons};
+            $.ajax({
+				type : "POST",
+				async : true,  //同步请求
+				url : urls,
+				data : data,
+				timeout:1000,
+                success:function(dates){
+                    alert('Ok');
+                    console.log(myMap);
+                    location.reload();
+
+
+                }
+			})
+        });
+    function jss() {
+        var m = $("#totalcountshow").html();
+
+        if (m > 0) {
+            $(".right").find("button").removeClass("disable");
+        } else {
+            $(".right").find("button").addClass("disable");
+        }
+    };
+        var n = $(".left-menu li").unbind('click').click(function () {
+            $(".left-menu li").removeClass("active");
+            var s =$(this).addClass("active");
+			/*
+			 console.log(v)
+			 $(".left-menu li").index(this);
+			 $(".con>div").hide();
+			 /!*            $(".con>div:eq("+v+")").show();*!/
+			 var d=$('[data-val="'+v+'"]').show();
+			 console.log(d);*/
+			/*        var s= $(".con>div").data("val");*/
+            var v =$(this).val()
+            var url = "/front/findfoods";
+            var data = {id:v};
+            $.ajax({
+                type : "get",
+                async : false,  //同步请求
+                url : url,
+                data : data,
+                timeout:1000,
+                success:function(dates){
+                    $("#foodui").html("");
+                    console.log(i<dates.length);
+                    for(var j=0;j<dates.length;j++){
+                        console.log("sss"+dates.length+"j"+j);
+						 var i1 = document.createElement("i");
+						 i1.className="price";
+						 i1.value=dates[j].id;
+						 i1.innerHTML=dates[j].price;
+						 var li = document.createElement('li');
+						 var div = document.createElement("div");
+						 div.className="menu-img";
+						 var img = document.createElement('img');
+						 img.src=dates[j].foodimg;
+						 img.width="55px";
+						 img.height="55px";
+						 div.appendChild(img);
+						 var div1 = document.createElement("div");
+						 div1.className="menu-txt";
+						 var h4 =  document.createElement("h4");
+						 h4.innerHTML=dates[j].foodname;
+						 var p = document.createElement("p");
+						 p.className="list1";
+						 p.innerHTML=dates[j].describes;
+						 var p1 = document.createElement("p");
+						 p1.className="list2";
+						 var b = document.createElement("b");
+						 b.innerHTML=dates[j].price+"￥"
+						 var btndiv = document.createElement("div");
+						 btndiv.className="btn";
+						 var botton = document.createElement("button");
+						 botton.className="minus";
+						 var strong = document.createElement("strong");
+						 botton.appendChild(strong);
+						 var i = document.createElement("i");
+						 i.innerHTML=0;
+						 var addbotton = document.createElement("button");
+						 var strong1 = document.createElement("strong");
+						 addbotton.className="add";
+						 addbotton.id="add"
+
+						 addbotton.appendChild(strong1);
+						 btndiv.appendChild(botton)
+						 btndiv.appendChild(i);
+						 btndiv.appendChild(addbotton);
+						 btndiv.appendChild(i1);
+						 p1.appendChild(b);
+						 div1.appendChild(h4);
+						 div1.appendChild(p);
+						 div1.appendChild(p1);
+						 li.appendChild(div1)
+						 li.appendChild(div);
+						 li.appendChild(btndiv)
+						 $("#foodui").append(li);
+					}
+                    //加的效果
+                    $(".add").click(function () {
+                        $(this).prevAll().css("display", "inline-block");
+                        var foodid = $(this).next().val()//获取商品Id
+                        var iscart =myMap.has(foodid)
+                        if(iscart){
+                            var tempid =myMap.get(foodid);
+                            tempid+=1;
+                            myMap.set(foodid,tempid);
+                        }else {
+                            myMap.set(foodid,1);
+						}
+                        console.log(foodid);
+                        console.log(myMap.get(foodid));
+
+                        var n = $(this).prev().text();
+                        var num = parseInt(n) + 1;
+                        if (num == 0) { return; }
+                        $(this).prev().text(num);
+                        var danjia = $(this).next("").text()//获取单价
+                        var a = $("#totalpriceshow").html();//获取当前所选总价
+                        $("#totalpriceshow").html((a * 1 + danjia * 1).toFixed(2));//计算当前所选总价
+                        var nm = $("#totalcountshow").html();//获取数量
+                        $("#totalcountshow").html(nm*1+1);
+                        jss();//<span style='font-family: Arial, Helvetica, sans-serif;'></span>   改变按钮样式
+                    });
+
+                    //减的效果
+                    $(".minus").click(function () {
+                        var n = $(this).next().text();
+                        var num = parseInt(n) - 1;
+                        $(this).next().text(num);//减1
+                        var foodid  = $(this).nextAll(".price").val();//获取单价
+                            var tempid =myMap.get(foodid);
+                            tempid-=1;
+                            if(tempid==0){
+                                tempid=0;
+							}
+                            myMap.set(foodid,tempid);
+                        console.log(myMap.get(foodid));
+                        var danjia = $(this).nextAll(".price").text();//获取单价
+                        var a = $("#totalpriceshow").html();//获取当前所选总价
+                        $("#totalpriceshow").html((a * 1 - danjia * 1).toFixed(2));//计算当前所选总价
+
+                        var nm = $("#totalcountshow").html();//获取数量
+                        $("#totalcountshow").html(nm * 1 - 1);
+                        //如果数量小于或等于0则隐藏减号和数量
+                        if (num <= 0) {
+                            $(this).next().css("display", "none");
+                            $(this).css("display", "none");
+                            jss();//改变按钮样式
+                            return
+                        }
+                    });
+
+
+                },
+                error: function() {
+                    // alert("失败，请稍后再试！");
+                }
+            });
+
+        });
+
+</script>
+<div style="text-align:center;">
+</div>
+</body>
+</html>

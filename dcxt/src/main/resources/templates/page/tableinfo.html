@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>餐桌列表</title>
+    <link rel="stylesheet"  th:href="@{/layui/css/layui.css}"   media="all">
+</head>
+<body>
+<a class="layui-btn layui-btn-normal" th:href="@{/addtable}">添加餐桌</a>
+<div class="layui-form">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>桌号</th>
+            <th>餐桌名</th>
+            <th>容纳人数</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="table:${tables}">
+            <td th:text="${table.tablenum}">贤心</td>
+            <td th:text="${table.tablename}">汉族</td>
+            <td th:text="${table.galleryful}">1989-10-14</td>
+            <td th:text="${table.state}==1?占用:未占用">人生似修行</td>
+            <td >  <div class="layui-btn-group">
+
+                <a class="layui-btn layui-btn-small" th:href="@{/updatetable(id=${table.id})}">编辑</a>
+                <button class="layui-btn layui-btn-small" th:onclick="'javascript:del('+${table.id}+');'">删除</button>
+            </div>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</div>
+<script>
+    function del(id) {
+        var msg = "您真的确定要删除吗？\n\n请确认！";
+        if (confirm(msg)==true){
+            /*<![CDATA[*/
+            window.location.href="/delecttable?id="+id;
+
+            /*]]>*/
+
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+</html>

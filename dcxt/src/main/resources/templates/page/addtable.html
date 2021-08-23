@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加餐桌</title>
+    <link rel="stylesheet"  th:href="@{/layui/css/layui.css}"   media="all">
+    <script src="//res.layui.com/layui/dist/layui.js" th:src="@{/layui/layui.js}" charset="utf-8"></script>
+    <style>
+        .layui-upload-img{width: 92px; height: 92px; margin: 0 10px 10px 0;}
+    </style>
+</head>
+<body>
+<form class="layui-form layui-form-pane" th:action="@{/committable}" style="margin-top: 20px">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">桌号</label>
+        <div class="layui-input-inline">
+            <input name="tablenum" lay-verify="required"  autocomplete="off" placeholder="请输入桌号" class="layui-input" type="text">
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">桌名</label>
+        <div class="layui-input-inline">
+            <input name="tablename" lay-verify="required"  autocomplete="off" placeholder="请输入桌名" class="layui-input" type="text">
+        </div>
+
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">容纳人员</label>
+        <div class="layui-input-inline">
+            <input name="galleryful" lay-verify="required"  autocomplete="off" placeholder="请输入容纳" class="layui-input" type="text">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+</body>
+
+</html>

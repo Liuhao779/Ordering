@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcxt.backstage.mapper.ClassinfoMapper">
+    <select id="getClassinfo" resultType="ClassinfoBean">
+        select  *  from t_foodclassname
+    </select>
+    <select id="getbyid" parameterType="int" resultType="ClassinfoBean">
+        select  *  from t_foodclassname where id = #{id}
+    </select>
+    <update id="updateclass" parameterType="ClassinfoBean">
+        update t_foodclassname
+        <set>
+            <if test="classname != null">classname=#{classname},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <insert id="addclassinfo" parameterType="ClassinfoBean">
+        insert into t_foodclassname(classname) VALUES (#{classname})
+    </insert>
+    <delete id="delectclassinfo" parameterType="int">
+     DELETE  FROM t_foodclassname  where id=#{id}
+    </delete>
+</mapper>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>餐馆点餐</title>
+	<link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
+	<link href="iconfont/iconfont.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <header id="header">
+    <div class="title">餐馆点餐</div>
+  </header>
+  <div >
+      <iframe rameborder="0"   scrolling="auto" name="top" width="100%" height="auto"></iframe>
+  </div>
+  <footer id="footer" class="foot">
+        <ul>
+            <li>
+                <a href="souye.html" target="top">
+                    <span class="img"><img src="images/nav2.png"></span>
+                    <p>首页</p>
+                </a>
+            <li>
+
+            	<a href="tiediy.html" target="top">
+                   <span class="img"><img src="images/nav2.png"></span>
+                   <p>餐馆管理</p>
+            	</a>
+            </li>
+            <li>
+            	<a href="meidiy.html"target="top">
+	                <span class="img"><img src="images/nav3.png"></span>
+	                <p>消费查看</p>
+            	</a>
+            </li>
+            <li>
+            	<a href="user_login.html" target="top">
+	                <span class="img"><img src="images/nav4.png"></span>
+	                <p>我的</p>
+            	</a>
+            </li>
+        </ul>
+  </footer>
+  <!--<div id="go-top" class="go-top">
+		<a href="javascript:goTop();" class="iconfont">&#xe610;</a>
+  </div>-->
+</body>
+
+<!--回到顶部-->
+	<script type="text/javascript">
+		var $top = $('#go-top');
+		$(window).bind('scroll',function(){
+			var $this = $(this);
+			if($this.scrollTop() > 360){
+				$top.show();
+			}else{
+				$top.hide();
+			}
+		})
+		function goTop(){
+			$('html,body').animate({
+				scrollTop:0
+			},400)
+		}
+    </script>
+ 
+</html>

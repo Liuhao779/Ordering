@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcxt.backstage.mapper.TableMapper">
+    <select id="alltable" resultType="TableBean">
+    select  *  from t_tableinfo
+    </select>
+    <select id="getbyid" parameterType="int" resultType="TableBean">
+        select  *  from t_tableinfo where id = #{id}
+    </select>
+    <update id="updatetable" parameterType="TableBean">
+        update t_tableinfo
+        <set>
+            <if test="uid != 0">uid=#{uid},</if>
+            <if test="tablenum != null">tablenum=#{tablenum},</if>
+            <if test="tablename != null">tablename=#{tablename},</if>
+            <if test="galleryful != null">galleryful=#{galleryful},</if>
+            <if test="state != null">state=#{state},</if>
+            <if test="consumenum != null">consumenum=#{consumenum}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    <insert id="addtable" parameterType="FoodmenuBean">
+        insert into t_tableinfo(tablenum,tablename,galleryful) VALUES
+        (#{tablenum},#{tablename},#{galleryful})
+    </insert>
+    <delete id="delecttable" parameterType="int">
+        DELETE  FROM t_tableinfo  where id=#{id}
+    </delete>
+</mapper>

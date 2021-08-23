@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+    <link rel="stylesheet"  th:href="@{/css/common.css}"  media="all"/>
+    <link rel="stylesheet"  th:href="@{/css/login.css}"   media="all" />
+
+</head>
+<body>
+    <div id="login"></div>
+    <div class="login_bg">
+        <div id="logo">
+            <img src="/images/logo.png" alt=""/>
+        </div>
+        <form action="/checklogin">
+            <input type="hidden"  name="mobile" value="mobile">
+            <div class="userName">
+                <lable>用户名：</lable>
+                <input type="text" name="uname" placeholder="请输入用户名"/>
+            </div>
+            <div class="passWord">
+                <lable>密&nbsp;&nbsp;&nbsp;码：</lable>
+                <input type="password" name="password" placeholder="请输入密码" />
+            </div>
+
+
+            <button class="login_btn" type="submit">登&nbsp;&nbsp;录</button>
+            <div class="choose_box">
+                <div>
+                    <a href="newPassword.html">忘记密码</a>
+                </div>
+                <a href="newPassword.html">注册用户</a>
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>

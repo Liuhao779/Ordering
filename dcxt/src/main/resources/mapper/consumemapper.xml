@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dcxt.backstage.mapper.ConsumeMapper">
+    <select id="getallConsumes" resultType="ConsumeBean">
+      SELECT * FROM t_consume ORDER by  createtime DESC
+    </select>
+    <select id="getisaccount" parameterType="int" resultType="ConsumeBean">
+       select * from t_consume
+    </select>
+    <select id="getbyid" parameterType="int" resultType="ConsumeBean">
+        SELECT * FROM t_consume where id=#{id}
+    </select>
+    <select id="getbyConsumes" parameterType="ConsumeBean" resultType="ConsumeBean">
+        SELECT * FROM t_consume
+        <where>
+            <if test="consumptionnum != null">
+                consumptionnum = #{consumptionnum}
+            </if>
+            <if test="unameaccount != null">
+               and unameaccount = #{unameaccount}
+            </if>
+            <if test="tablenum">
+               and tablenum = #{tablenum}
+            </if>
+
+    </where>
+    </select>
+    <update id="updateconsume" parameterType="ConsumeBean">
+        UPDATE  t_consume   <set>
+        <if test="Total != null">Total=#{Total},</if>
+        <if test="isaccount != null">isaccount=#{isaccount},</if>
+    </set>
+        WHERE id = #{id}
+    </update>
+    <insert id="addupdae" parameterType="ConsumeBean">
+            insert into t_consume(tablenum,consumptionnum,tid,unameaccount) VALUES (#{tablenum},#{consumptionnum},#{tid},#{unameaccount})
+    </insert>
+</mapper>

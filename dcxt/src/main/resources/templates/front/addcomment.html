@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加评论</title>
+    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.css"  th:href="@{/bootstrap/css/bootstrap.css}"/>
+    <style>
+
+        .table tbody tr td{
+            vertical-align: middle;
+        }
+        .btns{
+            width: 200px;
+         margin: 0 auto;
+        }
+    </style>
+    <script>
+
+    </script>
+。
+</head>
+<body>
+<div class="container">
+<form  th:action="@{/addcommentcommit}">
+
+    <div class="form-group">
+
+            <textarea class="form-control" rows="6" name="commentcontent"></textarea>
+
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">提交</button>
+
+</form>
+</div>
+</body>
+</html>

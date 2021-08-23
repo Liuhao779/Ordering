@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>评论列表</title>
+    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.css"  th:href="@{/bootstrap/css/bootstrap.css}"/>
+    <style>
+
+        .table tbody tr td{
+            vertical-align: middle;
+        }
+        .btns{
+            width: 200px;
+         margin: 0 auto;
+        }
+        .content {
+            overflow-y: auto;
+            margin:0 auto;
+        }
+        .nav {
+            width:100%;
+            height:30px;
+            margin:0 auto;
+            position:fixed;
+            bottom:0;
+            text-align:center;
+        }
+        .title{
+            color: #ff0000;
+        }
+        .times{
+          font-size: 12px;
+          color: #ccc;
+        }
+    </style>
+    <script>
+
+    </script>
+
+</head>
+<body>
+
+<div style="margin-left: 5px" th:each="comment,iterStat:${commentBeans}" class="content">
+    <div style="margin-top: 20px"></div>
+    <div th:unless="${iterStat.first}" style="background-color: #ccc;height: 10px;width: auto;margin-top: 5px" >
+    </div>
+    <div  style="margin-top: 10px">
+        <p class="title" th:text="${comment.nick}" >姓名</p>
+        <p class="times" th:text="${#dates.format(comment.createtime, 'yyyy-MM-dd HH:mm:ss')}"><font style="font-size: 12px;color: #ccc" >2017-11-7</font></p>
+        <div th:text="${comment.commentcontent}" style="word-wrap:break-word ">
+            sadasdasdsadasdasdsadasdasdsadasdasdsadasdasdsadasdasd
+        </div>
+    </div>
+</div>
+<div style="margin-top: 20px" class="nav">  <a  style="" type="button" class="btn btn-info btns" th:href="@{/addcomment}">添加评论</a></div>
+</body>
+</html>

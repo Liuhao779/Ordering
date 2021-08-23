@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit"/>
+    <title>后台管理中心</title>  
+    <link rel="stylesheet" href="../../static/css/pintuer.css" th:href="@{/css/pintuer.css}"/>
+    <link rel="stylesheet" href="../../static/css/admin.css" th:href="@{/css/admin.css}"/>
+
+    <link rel="stylesheet"  th:href="@{/layui/css/layui.css}"   media="all">
+
+</head>
+<body style="background-color:#f2f9fd;">
+<div class="header bg-main">
+    <div class="logo margin-big-left fadein-top">
+        <h1>餐馆后台管理</h1>
+    </div>
+    <div class="head-r"><a class="button button-little bg-red" href=""><span class="icon-power-off"></span> 退出登录</a> </div>
+    <div class="head-r"><a class="button button-little bg-blue" th:href="@{/manage/updatepass}" target="right"><span class="icon-power-off"></span> 修改密码</a> </div>
+
+    <p class="head-user"><span th:text="${session.user.getUname()}"></span>,你好</p>
+</div>
+
+<div class="leftnav">
+  <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
+  <h2><span class="icon-user"></span>后台管理</h2>
+  <ul style="display:block">
+    <li><a href="info.html"  th:href="@{/table/index}" target="right"><span class="icon-caret-right"></span>餐桌管理</a></li>
+    <li><a href="loglist.html" th:href="@{/foodmenuindex}"   target="right"><span class="icon-caret-right"></span>菜单管理</a></li>
+      <li><a href="loglist.html" th:href="@{/classinfoindex}"   target="right"><span class="icon-caret-right"></span>类别管理</a></li>
+      <li><a href="loglist.html" th:href="@{/back/commentlist}"   target="right"><span class="icon-caret-right"></span>查看评论</a></li>
+  </ul>
+    <h2><span class="icon-pencil-square-o"></span>消费单管理</h2>
+    <ul>
+        <li><a href="list.html" th:href="@{/catconsume}" target="right"><span class="icon-caret-right"></span>查看历史账单</a></li>
+        <li><a href="list.html" th:href="@{/Checkout}" target="right"><span class="icon-caret-right"></span>结账订单</a></li>
+    </ul>
+
+
+</div>
+<script src="../../static/js/jquery.js" th:src="@{/jquery/jquery-3.2.1.js}" ></script>
+<script type="text/javascript">
+$(function(){
+  $(".leftnav h2").click(function(){
+	  $(this).next().slideToggle(200);	
+	  $(this).toggleClass("on"); 
+  })
+  $(".leftnav ul li a").click(function(){
+	    $("#a_leader_txt"). text($(this).text());
+  		$(".leftnav ul li a").removeClass("on");
+		$(this).addClass("on");
+  })
+});
+</script>
+<ul class="bread">
+  <li><a href="{:U('Index/info')}" th:href="@{/info}" target="right" class="icon-home"> 首页</a></li>
+  <li><a href="##" id="a_leader_txt">网站信息</a></li>
+  </ul>
+<div class="admin">
+  <iframe scrolling="auto" rameborder="0"  th:src="@{/info}" name="right" width="100%" height="100%"></iframe>
+</div>
+<div style="text-align:center;">
+
+</div>
+</body>
+</html>
